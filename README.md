@@ -10,6 +10,12 @@
 #Detalhes do projeto
 - O Projeto foi criado utilizando a versão mais recente do Spring Boot
 
-- O Spring faz conversão automática de um JSON para um objeto, sendo os dois na mesma estrutura. Todos os testes são realizados passando um JSON como parametro em uma chamada GET para o método requerido.
+- Para o Crud o projeto usa banco em memória, para tornar o processo de criação mais ágil e fácil. 
 
-- Para o Crud utilizei o banco em memória como base, para tornar mais ágil e facil. 
+- Todas as chamadas do CRUD estão nas classes do Controller
+
+- As regras de negocio estão nas classes Service.
+
+- O projeto contém as classes DTO para que a requisição não tenha acesso direto as classes Model.
+
+- O projeto contem a classe VO para adaptação na visualação dos dados. 
