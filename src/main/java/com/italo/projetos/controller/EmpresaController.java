@@ -48,8 +48,8 @@ public class EmpresaController {
 	}
 	
 	@RequestMapping("/listar")
-	public List<Empresa> listar(){
-		List<Empresa> result = empresaService.listar();
+	public List<EmpresaDTO> listar(){
+		List<EmpresaDTO> result = empresaService.listar();
 		return result;
 	}
 	

@@ -1,5 +1,6 @@
 package com.italo.projetos.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.italo.projetos.dto.EmpresaDTO;
 import com.italo.projetos.model.Empresa;
+import com.italo.projetos.model.Projeto;
 import com.italo.projetos.repository.EmpresaRepository;
 
 @Service
@@ -33,9 +35,16 @@ public class EmpresaServiceImpl implements EmpresaService{
 	}
 
 	@Override
-	public List<Empresa> listar() {
-		
-		return (List<Empresa>) empresaRepository.findAll();
+	public List<EmpresaDTO> listar() {
+		List<Empresa> empresaList = (List<Empresa>) empresaRepository.findAll();
+		List<EmpresaDTO> empresaDTOList = new ArrayList<EmpresaDTO>();
+		for(Empresa empresa : empresaList) {
+			 EmpresaDTO empresaDTO = new EmpresaDTO();
+			 empresaDTO.setIdEmpresa(empresa.getIdEmpresa());
+			 empresaDTO.setNomeEmpresa(empresa.getNomeEmpresa());
+			 empresaDTOList.add(empresaDTO);
+		}
+		return empresaDTOList;
 	}
 
 	@Override
@@ -60,5 +69,18 @@ public class EmpresaServiceImpl implements EmpresaService{
 		}
 		
 	}
+
+	@Override
+	public List<Projeto> listaProjetoAtivosEmpresa(Long idEmpresa) {
+		Empresa empresa = empresaRepository.findById(idEmpresa).get();
+		List<Projeto> projetos = new ArrayList<Projeto>();
+		for(Projeto projeto : empresa.getProjetos()) {
+			if(projeto.isStatusProjeto()) {
+				projetos.add(projeto);
+			}
+		}
+		return projetos;
+	}
+	
 	
 }

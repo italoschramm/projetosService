@@ -23,9 +23,12 @@ public class Empresa {
 	private String nomeEmpresa;
 	
 	@OneToMany(cascade = CascadeType.ALL,
-				fetch = FetchType.EAGER,
 				mappedBy = "empresa")
 	private List<Projeto> projetos;
+	
+	@OneToMany(cascade = CascadeType.ALL,
+			mappedBy = "empresa")
+	private List<Cliente> clientes;
 
 	/**
 	 * @return the idEmpresa
